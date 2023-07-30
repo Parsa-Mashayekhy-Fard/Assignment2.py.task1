@@ -1,19 +1,30 @@
 print("Hello there")
-print("what's up?")
-print("let's calculate your GPA")
+print("What's up?")
+print("Let's calculate your GPA")
 
-name = input("enter your First name: ")
-family = input("enter your Last name: ")
-score1=float(input("Enter your first score:"))
-score2=float(input("Enter your second score:"))
-score3=float(input("Enter your third score:"))
+name = input("Enter your First name: ")
+family = input("Enter your Last name: ")
 
-Avg = (score1+score2+score3)/3
-if Avg>=17:
-    status="Greate, nice job!"
-elif Avg<17 and Avg>=12:
-    status="Normal,can be better."
+# Input validation for scores (0 to 20)
+while True:
+    try:
+        score1 = float(input("Enter your first score (0-20): "))
+        score2 = float(input("Enter your second score (0-20): "))
+        score3 = float(input("Enter your third score (0-20): "))
+        if 0 <= score1 <= 20 and 0 <= score2 <= 20 and 0 <= score3 <= 20:
+            break
+        else:
+            print("Invalid input! Scores must be in the range 0-20.")
+    except ValueError:
+        print("Invalid input! Please enter a numeric value for the scores.")
+
+avg = (score1 + score2 + score3) / 3
+if 20 >= avg >= 17:
+    status = "Great, nice job!"
+elif 17 > avg >= 12:
+    status = "Normal, can be better."
 else:
-    status="YOU ARE FAIL, Don't worry man, do it next time well :) "
-print("Name:",name,"Last name:", family)
-print("Average:",Avg, "Status:",status)
+    status = "YOU HAVE FAILED. Don't worry, try again next time :)"
+
+print("Name:", name, "Last name:", family)
+print("Average:", avg, "Status:", status)

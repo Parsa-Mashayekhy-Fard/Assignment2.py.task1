@@ -1,47 +1,44 @@
 print("Hello My Lord")
-print("KNIGHT CALCULATOR hear to serve you")
-
-num1= float(input("Enter your first number:"))
-num2= float(input("Enter your second number:"))
-op = input("please select your operation(+ , - , * , / , sin , cos , tan , cot , ! , radical ): ")
+print("KNIGHT CALCULATOR here to serve you")
 
 import math
-if op=="+":
+
+op = input("Please select your operation (+, -, *, /, sin, cos, tan, cot, !, radical): ")
+num1 = float(input("Enter your first number: "))
+num2 = None
+
+if op not in ["sin", "cos", "tan", "cot", "!"]:
+    num2 = float(input("Enter your second number: "))
+
+result = None
+
+if op == "+":
     result = num1 + num2
-if op=="-":
+elif op == "-":
     result = num1 - num2
-if op=="*":
+elif op == "*":
     result = num1 * num2
-if op=="/":
+elif op == "/":
     if num2 == 0:
-        result= "far as we know, there is no answer, my Lord"
+        result = "Far as we know, there is no answer, my Lord."
     else:
         result = num1 / num2
-if op== "sin":
-    result = math.sin(num1)
-if op == "cos":
-    num1 = int(input("enter your number: "))
-    result = math.cos(num1)
- 
-if op == "tan":
-    num1 = int(input("enter your number: "))
-    result = math.tan(num1)
-
-if op == "cot":
-    num1 = int(input("enter your number: "))
-    x = math.tan(num1)
-
-    if x == 0:
-        result = "far as we know, there is no answer, my Lord"
+elif op == "sin":
+    result = math.sin(math.radians(num1))
+elif op == "cos":
+    result = math.cos(math.radians(num1))
+elif op == "tan":
+    result = math.tan(math.radians(num1))
+elif op == "cot":
+    if math.tan(math.radians(num1)) != 0:
+        result = 1 / math.tan(math.radians(num1))
     else:
-        result = 1 / math.tan(num1)
+        result = "Far as we know, there is no answer, my Lord."
+elif op == "!":
+    result = math.factorial(num1)
+elif op == "radical":
+    result = math.sqrt(num1)
+else:
+    result = "Invalid operation, my Lord. Please select a valid one."
 
-if op == "!":
-    num1 = int(input("enter your number: "))
-    result = math.factorial(num1) 
-
-if op == "radical":
-   num1 = int(input("enter your number: ")) 
-   result = math.sqrt(num1)     
-
-print(result)
+print("Result:", result)
